@@ -1,15 +1,12 @@
 
 export default {
 
-  namespace: 'example',
+  namespace: 'app',
 
-  state: {},
-
-  subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
-    },
+  state: {
+    dirArr: ['C:', 'D:', 'E:'],
+    projectDir: 'C:'
   },
-
   effects: {
     *fetch({ payload }, { call, put }) {  // eslint-disable-line
       yield put({ type: 'save' });
@@ -17,6 +14,12 @@ export default {
   },
 
   reducers: {
+    changeProjectDir(state, action) {
+      return {
+        ...state,
+        ...action.payload
+      }
+    },
     save(state, action) {
       return { ...state, ...action.payload };
     },
